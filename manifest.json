@@ -1,0 +1,25 @@
+{
+  "name": "NTU Course Helper",
+  "version": "1.0.1",
+  "manifest_version": 2,
+  "description": "Rate More, Get More!!!",
+  "update_url": "http://r444b.ee.ntu.edu.tw/NTU-Course-Helper/updates.xml",
+  "content_scripts": [
+  	{
+  		"matches": ["http://r444b.ee.ntu.edu.tw/~gx578007/NTU-Course-Helper/localTest/CourseSem.html", "https://if163.aca.ntu.edu.tw/eportfolio/student/*"],
+  		"js": ["jquery_js/jquery-1.8.3.min.js", "jquery_js/jquery-ui.js", "jquery_js/jquery.dataTables.min.js", "tableclothe/js/jquery.tablecloth.js", "panel/js/slide.js", "jquery_js/jquery.simplemodal.1.4.3.min.js", "highcharts_js/highcharts.js", "highcharts_js/exporting.src.js", "jquery_js/jquery.tablesorter.js", "jquery_js/jquery.tablesorter.widgets.js", "core_js/sha1.js", "core_js/script.js", "core_js/util.js"],
+  		"css": ["css/jquery-ui.css","css/ajax_loading.css", "tableclothe/css/tablecloth.css", "panel/css/slide.css", "panel/css/style.css", "css/style.css"],	
+  		"run_at": "document_end"
+  	}
+  ],
+  "web_accessible_resources": [
+  	"template.html",
+    "panel/images/*.png",
+    "tableclothe/img/*.gif",
+    "images/*.png", 
+    "images/*.gif"
+  ],
+  "permissions": [
+    "tabs", "<all_urls>"
+  ]
+}

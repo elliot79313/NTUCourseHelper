@@ -1,0 +1,142 @@
+<!-- Panel -->
+<script> 
+
+$("#open").click(function(){
+	$("div#toppanel")[0].style.height = 440;
+	$("div#panel").slideDown("slow");
+});	
+
+// Collapse Panel
+$("#close").click(function(){
+	$("div#panel").slideUp("slow");	
+	$("div#toppanel")[0].style.height = 42;
+});		
+$("div#toppanel")[0].style.height = 42;
+
+// Switch buttons from "Log In | Register" to "Close Panel" on click
+$("#toggle a").click(function () {
+	$("#toggle a").toggle();
+});
+
+$(function(){
+	$("#courses").tablesorter({
+	    headers : {
+	        // set "sorter : false" (no quotes) to disable the column
+	        0: { sorter: "text" },
+	        2: { sorter: "digit" },
+	    },
+	    // extract text from the table - this is how is
+	    // it done by default
+	    textExtraction : {
+	        0: function(node) { return $(node).text(); },
+	        2: function(node) { 
+	        	return levelMapToGrade($(node).text());
+	        }
+	    }
+	});
+});
+
+$("#courses").tablecloth({ theme: "dark" });
+//$("#opinion").tablecloth({ theme: "light" });
+</script>
+
+<div id="panel">
+	<div class="content clearfix">
+		<!--
+		<div class="left">
+			<table>
+				<tr id="semester-menu">
+				</tr>
+			</table>
+		</div>
+		-->
+		<div class="right" id="gradeStat">成<br>績<br>統<br>計</div>
+		<div class="content" id="coursesDiv">
+			<table id="courses">
+				<thead><tr><th>課程名稱</th><th>老師</th><th>課程成績</th><th>課程意見</th></tr></thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="right" id="back" style="display:none">回<br>課<br>程<br>選<br>單</div>
+		<div class="content" id="chartPage" style="display:none">
+			<div id="chartZone" style="min-width: 750px; height: 400px; margin: 0 auto"></div>
+		</div>
+
+		<div class="content" id="opinionDiv" style="display:none">
+			<label id="courseName">課程：</label>
+			<table class="hideextra" id="opinion">
+				<thead>
+				<tr>
+					<th><div class="title">總評</div></th>
+					<th><div class="title">風格</div></th>
+					<th><div class="title">負擔</div></th>
+					<th><div class="title">難度</div></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><div class="overall" id="1">好</div></td>
+					<td><div class="style" id="1">大師風範</div></td>
+					<td><div class="loading" id="1">非常輕鬆</div></td>
+					<td><div class="difficulty" id="1">非常簡單</div></td>
+				</tr>
+				<tr>
+					<td><div class="overall" id="2">有趣</div></td>
+					<td><div class="style" id="2">幽默風趣</div></td>
+					<td><div class="loading" id="2">有點輕鬆</div></td>
+					<td><div class="difficulty" id="2">有點簡單</div></td>
+				</tr>
+				<tr>
+					<td><div class="overall" id="3">紮實</div></td>
+					<td><div class="style" id="3">深入淺出</div></td>
+					<td><div class="loading" id="3">負擔適中</div></td>
+					<td><div class="difficulty" id="3">難度適中</div></td>
+				</tr>
+				<tr>
+					<td><div class="overall" id="4">操</div></td>
+					<td><div class="style" id="4">聽不太懂</div></td>
+					<td><div class="loading" id="4">有點重</div></td>
+					<td><div class="difficulty" id="4">有點困難</div></td>
+				</tr>
+				<tr>
+					<td><div class="overall" id="5">崩潰</div></td>
+					<td><div class="style" id="5">有點沈悶</div></td>
+					<td><div class="loading" id="5">非常重</div></td>
+					<td><div class="difficulty" id="5">非常困難</div></td>
+				</tr>
+				<tr>
+					<td><div><img class="multiOptTip"></img></div></td>
+					<td><div><img class="multiOptTip"></img></div></td>
+					<td><div><img class="singleOptTip"></img></div></td>
+					<td><div><img class="singleOptTip"></img></div></td>
+				</tr>
+				</tbody>
+			</table>
+			<label id="errorMsg"></label>
+			<table class="navTable">
+				<tr><td><div class="hideextra" id="backToCoursesAndSubmit"><img class="backToCoursesAndSubmitImg"></img></div></td></tr>
+			</table>
+		</div>
+	</div>
+</div> <!-- /login -->
+
+
+<!-- The tab on top -->	
+<div class="tab">
+	<ul class="login">
+		<li class="left">&nbsp;</li>
+		<li><a href="#" class="semester-tab">全部課程</a></li>
+		<li class="sep">|</li>
+		<li id="toggle">
+			<a id="open" class="open" href="#">開啟課程小幫手</a>
+			<a id="close" style="display: none;" class="close" href="#">關閉課程小幫手</a>			
+		</li>
+		<li class="right">&nbsp;</li>
+	</ul> 
+</div> <!-- / top -->
+
+<div class="modal"><!-- Place at bottom of page --></div>
+
+<div id="msg-modal" style="display:none"></div>
